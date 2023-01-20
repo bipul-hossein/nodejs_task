@@ -10,7 +10,7 @@ function App() {
   const [updateId,setUpdateId]=([])
   console.log(updateId)
   useEffect(() => {
-    fetch(`http://localhost:5000/students`)
+    fetch(`http://https://nodejstask.vercel.app/students`)
       .then(res => res.json())
       .then(data => setStudentsData(data))
   }, []);
@@ -26,7 +26,7 @@ function App() {
     const class_roll = event.target.roll.value
     const student = { name, email, label, class_roll }
 
-    fetch('http://localhost:5000/student', {
+    fetch('http://https://nodejstask.vercel.app/student', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ function App() {
     const agree = window.confirm(`you want to delete${user.name}`)
     if (agree) {
       // console.log(`you want to delete${user._id}`)
-      fetch(`http://localhost:5000/users/${user._id}`, {
+      fetch(`http://https://nodejstask.vercel.app/users/${user._id}`, {
         method: 'DELETE',
       })
         .then(response => response.json())
@@ -75,7 +75,7 @@ function App() {
     const updateStudent =studentsData.filter(usr => usr._id === id)
     setUpdateId(updateStudent)
     console.log(updateStudent)
-      fetch(`http://localhost:5000/users/${id}`, {
+      fetch(`http://https://nodejstask.vercel.app/users/${id}`, {
         method: 'get',
         headers: {
           'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ function App() {
 
   return (
     <div className='container'>
-      <h1 className="title">Students Details</h1>
+      <h1 className="title text-3xl">Students Details</h1>
       <form onSubmit={handleAddStudents} action="">
         <input type="text" name='name' placeholder="Student Name" required />
         <input type="text" name='email' placeholder="Student Email" required />
