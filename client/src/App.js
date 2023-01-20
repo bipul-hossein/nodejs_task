@@ -10,7 +10,7 @@ function App() {
   const [updateId,setUpdateId]=([])
   console.log(updateId)
   useEffect(() => {
-    fetch(`http://https://nodejstask.vercel.app/students`)
+    fetch(`https://nodejstask.vercel.app/students`)
       .then(res => res.json())
       .then(data => setStudentsData(data))
   }, []);
@@ -26,7 +26,7 @@ function App() {
     const class_roll = event.target.roll.value
     const student = { name, email, label, class_roll }
 
-    fetch('http://https://nodejstask.vercel.app/student', {
+    fetch('https://nodejstask.vercel.app/student', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ function App() {
     const agree = window.confirm(`you want to delete${user.name}`)
     if (agree) {
       // console.log(`you want to delete${user._id}`)
-      fetch(`http://https://nodejstask.vercel.app/users/${user._id}`, {
+      fetch(`https://nodejstask.vercel.app/users/${user._id}`, {
         method: 'DELETE',
       })
         .then(response => response.json())
@@ -70,32 +70,16 @@ function App() {
 
   const handleEdit = (id) => {
 
-
     console.log(id)
     const updateStudent =studentsData.filter(usr => usr._id === id)
-    setUpdateId(updateStudent)
     console.log(updateStudent)
-      fetch(`http://https://nodejstask.vercel.app/users/${id}`, {
-        method: 'get',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(id),
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Success:', data);
-        
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        }); 
+
   }
 
   return (
-    <div className='container'>
+    <div className='container w-11/12 mx-auto'>
       <h1 className="title text-3xl">Students Details</h1>
-      <form onSubmit={handleAddStudents} action="">
+      <form className='my-4' onSubmit={handleAddStudents} action="">
         <input type="text" name='name' placeholder="Student Name" required />
         <input type="text" name='email' placeholder="Student Email" required />
         <input type="text" name='label' placeholder="Student Label" required />
@@ -118,8 +102,8 @@ function App() {
             <td>{data.label}</td>
             <td>{data.class_roll}</td>
             <td>
-              <button onClick={() => handleDelete(data)} id="button">delete</button>
-              <label htmlFor="my-modal-3" className="btn"><button onClick={() => handleEdit(data._id)} >edit</button></label>
+              <button onClick={() => handleDelete(data)} id="button" className='mr-3'>delete</button>
+              <label htmlFor="my-modal-3" id="button"><button onClick={() => handleEdit(data._id)} >edit</button></label>
             </td>
           </tr>
 
@@ -136,10 +120,10 @@ function App() {
           <h3 className="text-lg font-bold">update</h3>
           <h1 className="title">Students Details</h1>
           <form action="">
-            <input className="input w-full max-w-xs mb-4" type="text" name='name' defaultValue={updateId?.name} required />
-            <input className="input w-full max-w-xs mb-4" type="text" name='email' defaultValue={updateId?.email} required />
-            <input className="input w-full max-w-xs mb-4" type="text" name='label' defaultValue={updateId?.label} required />
-            <input className="input w-full max-w-xs mb-4" type="text" name='roll' defaultValue={updateId?.class_roll}  required />
+            <input className="input w-full max-w-xs mb-4" type="text" name='name'placeholder="Student Name" required />
+            <input className="input w-full max-w-xs mb-4" type="text" name='email'  placeholder="Student Email" required />
+            <input className="input w-full max-w-xs mb-4" type="text" name='label' placeholder="Student Label" required />
+            <input className="input w-full max-w-xs mb-4" type="text" name='roll' placeholder="Student roll"  required />
             <button type="submit" className='btn btn-active btn-ghost mb-4'>submit</button>
           </form>
         </div>
